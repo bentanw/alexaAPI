@@ -66,9 +66,8 @@ exports.alexaRequest = (req, res, next) => {
 
   // Find the container that matches the title
   const containers = contentTable.filter(
-    (item) => item.title.includes(title)
+    (item) => item.title.includes(title) && item.group == "playable"
   );
-  console.log(containers);
 
   res.status(200).json({ data: containers });
 };

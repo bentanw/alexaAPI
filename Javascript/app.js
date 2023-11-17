@@ -9,7 +9,4 @@ app.use(express.json());
 // define middlewares
 app.use("/api/alexa", alexaRoutes);
 
-port = 3000;
-app.listen(port, () => {
-  console.log(`Port is currently running on ${port}`);
-});
+module.exports = app;
