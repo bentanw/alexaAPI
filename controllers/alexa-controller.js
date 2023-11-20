@@ -57,41 +57,44 @@ const containerToPlayable = [
 ];
 
 exports.alexaRequest = (req, res, next) => {
-  // Extract input between "play ... on"
-  const requestData = req.body.input;
-
   try {
-    const title = requestData.match(/play (.*) on/)[1].trim();
-    if (!title) {
-      return res
-        .status(400)
-        .json({ error: "Invalid or missing title in request" });
+    // Extract everything between "Alexa, play ... on" into title, else throw error
+    const requestData = req.body.input;
+    const match = requestData.match(/play (.*) on/);
+    if (!match) {
+      return res.status(400).json({ "error": "Please provide a valid input in the format of 'Hey Alexa, play ___ on SiriusXM'" });
     }
 
-    // Find if the container matches the title
-    let containers = contentTable.filter(
+    const title = match[1].trim();
+    if (!title){
+      return res.status(400).json({ "error": "Please provide a valid input in the format of 'Hey Alexa, play ___ on SiriusXM" })
+    }
+
+    // Find potential containers that match the title
+    let listOfContainers = contentTable.filter(
       (item) => item.title.includes(title) && item.group === "container"
     );
 
-    // If a container is found, get the IDs of associated playables, else search directly in playables
-    if (containers.length > 0) {
-      const playableIds = containerToPlayable
-        .filter((ctp) =>
-          containers.some((container) => container.id === ctp.container_id)
-        )
-        .map((ctp) => ctp.playable_id);
+    // Get playable IDs associated with all the containers
+    let playableIds = [];
+    if (listOfContainers.length > 0) {
+      containerToPlayable.forEach((ctp) => {
+        if (listOfContainers.some(container => container.id === ctp.container_id)) {
+          playableIds.push(ctp.playable_id);
+        }
+      });
 
-      // Find playables that match the IDs
-      containers = contentTable.filter(
+      // Filter playables that match the IDs
+      listOfContainers = contentTable.filter(
         (item) => playableIds.includes(item.id) && item.group === "playable"
       );
     } else {
-      containers = contentTable.filter(
+      listOfContainers = contentTable.filter(
         (item) => item.title.includes(title) && item.group === "playable"
       );
     }
 
-    res.status(200).json({ data: containers });
+    res.status(200).json({ data: listOfContainers });
   } catch (error) {
     console.error("Error processing Alexa request:", error);
     return res.status(500).json({ error: `Internal server error: ${error}` });

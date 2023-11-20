@@ -1,4 +1,4 @@
-## ALEXAAPI 
+## AlexaAPI 
 
 ### Installation plan
 1. In terminal, run `npm install` if node_modules not already installed
