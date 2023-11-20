@@ -2,7 +2,7 @@ const app = require("../app");
 const request = require("supertest");
 
 describe("api/alexa", () => {
-  it("Alexa, play Howard Stern on SiriusXM should return 3 playables", async () => {
+  it("should return 3 playables upon Alexa, play Howard Stern on SiriusXM", async () => {
     const res = await request(app)
       .post("/api/alexa")
       .send({ input: "Alexa, play Howard Stern on SiriusXM" });
@@ -32,7 +32,7 @@ describe("api/alexa", () => {
     });
   });
 
-  it("Alexa, play Howard Stern 24/7 on SiriusXM should return 1 playable", async () => {
+  it("should return 1 playables upon Alexa, play Howard Stern 24/7 on SiriusXM", async () => {
     const res = await request(app)
       .post("/api/alexa")
       .send({ input: "Alexa, play Howard Stern 24/7 on SiriusXM" });
@@ -50,7 +50,7 @@ describe("api/alexa", () => {
     });
   });
 
-  it("Alexa, play SiriusXM NFL Radio on SiriusXM Should return 1 playable", async () => {
+  it("should return 3 playables upon Alexa, play SiriusXM NFL Radio on SiriusXM", async () => {
     const res = await request(app)
       .post("/api/alexa")
       .send({ input: "Alexa, play SiriusXM NFL Radio on SiriusXM" });
@@ -68,7 +68,7 @@ describe("api/alexa", () => {
     });
   });
 
-  it("Alexa, play Sports on SiriusXM Should return 1 playable", async () => {
+  it("should return 1 playables upon Alexa, play Sports on SiriusXM", async () => {
     const res = await request(app)
       .post("/api/alexa")
       .send({ input: "Alexa, play Sports on SiriusXM" });
@@ -86,7 +86,7 @@ describe("api/alexa", () => {
     });
   });
 
-  it("Alexa, play Elton John on SiriusXM Should return 1 playable", async () => {
+  it("should return 1 playables upon Alexa, play Elton John on SiriusXM", async () => {
     const res = await request(app)
       .post("/api/alexa")
       .send({ input: "Alexa, play Elton John on SiriusXM" });
