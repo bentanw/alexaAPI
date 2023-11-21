@@ -50,7 +50,7 @@ describe("api/alexa", () => {
     });
   });
 
-  it("should return 3 playables upon Alexa, play SiriusXM NFL Radio on SiriusXM", async () => {
+  it("should return 1 playables upon Alexa, play SiriusXM NFL Radio on SiriusXM", async () => {
     const res = await request(app)
       .post("/api/alexa")
       .send({ input: "Alexa, play SiriusXM NFL Radio on SiriusXM" });
