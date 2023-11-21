@@ -94,7 +94,7 @@ exports.alexaRequest = (req, res, next) => {
       );
     }
 
-    res.status(200).json({ data: listOfContainers });
+    res.status(200).json({ playable: listOfContainers });
   } catch (error) {
     console.error("Error processing Alexa request:", error);
     return res.status(500).json({ error: `Internal server error: ${error}` });

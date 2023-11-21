@@ -9,7 +9,7 @@ describe("api/alexa", () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toEqual({
-      data: [
+      playable: [
         {
           id: "1",
           type: "channel",
@@ -39,7 +39,7 @@ describe("api/alexa", () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toEqual({
-      data: [
+      playable: [
         {
           id: "1",
           type: "channel",
@@ -57,7 +57,7 @@ describe("api/alexa", () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toEqual({
-      data: [
+      playable: [
         {
           id: "4",
           type: "channel",
@@ -75,7 +75,7 @@ describe("api/alexa", () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toEqual({
-      data: [
+      playable: [
         {
           id: "4",
           type: "channel",
@@ -93,7 +93,7 @@ describe("api/alexa", () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toEqual({
-      data: [
+      playable: [
         {
           id: "3",
           type: "episode",
